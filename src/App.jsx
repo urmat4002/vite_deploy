@@ -6,7 +6,7 @@ const App = () => {
   useEffect(() => {
     const newSocket = new WebSocket(
       // 'ws://192.168.1.104:8000',
-      'ws://afternoon-island-43499-10cea7ad17e2.herokuapp.com/',
+      'wss://afternoon-island-43499-10cea7ad17e2.herokuapp.com/',
     )
     newSocket.onopen = () => {
       console.log('Connected to WebSocket')
