@@ -1,17 +1,20 @@
-import {useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, {useState, useEffect} from 'react'
+import {Body} from './body'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [socket, setSocket] = useState(null)
+  useEffect(() => {
+    const newSocket = new WebSocket(
+      // 'ws://192.168.1.104:8000',
+      'ws://afternoon-island-43499-10cea7ad17e2.herokuapp.com/',
+    )
+    newSocket.onopen = () => {
+      console.log('Connected to WebSocket')
+    }
+    setSocket(newSocket)
+  }, [])
 
-  return (
-    <>
-      <h1>Hello Vite</h1>
-      <h2>shlagbaum project</h2>
-    </>
-  )
+  return <div>{socket && <Body newSocket={socket} />}</div>
 }
 
 export default App
